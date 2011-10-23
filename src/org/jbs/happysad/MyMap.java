@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MyMap extends AbstractMap implements OnClickListener {
 	ZoomPanListener zpl;
 	Runnable running;
-	int bottlestoview = 5;
+	int bottlestoview = 35;
 
 	/**
 	 * Initializes Activity
@@ -270,7 +270,7 @@ public class MyMap extends AbstractMap implements OnClickListener {
 		int maxLong = centerLong+width/2; //gets the right most longitude shown
 		int maxLat = centerLat+height/2; //gets the top most latitude shown
 		int minLat = centerLat-height/2; //gets the bottom most latitude shown
-		Log.d("Coordinates", "minLong: "+minLong+"minLat: "+minLat+"maxLong"+maxLong+"maxLat"+maxLat);
+		//Log.d("Coordinates", "minLong: "+minLong+"minLat: "+minLat+"maxLong"+maxLong+"maxLat"+maxLat);
 		return datahelper.getMyLocalBefore(minLat,maxLat,minLong,maxLong,bottlestoview,epochTime);
 	}
 	private ArrayList<HappyBottle> updateViewAfter(){

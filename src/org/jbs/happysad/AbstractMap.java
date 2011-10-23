@@ -65,7 +65,7 @@ public abstract class AbstractMap extends MapActivity  {
 			String bottleObject = bottle.getMsg()+bottle.getTime()+bottle.getUID(); 
 			if( !filter.contains(bottleObject) && bottle.getEmo() == emotion){
 				filter.add(bottleObject);
-				Log.d(TAG, "filter size: " + filter.size());
+				//Log.d(TAG, "filter size: " + filter.size());
 				int latitude = bottle.getLat();
 				int longitude = bottle.getLong();
 				GeoPoint point = new GeoPoint(latitude,longitude);
@@ -188,7 +188,7 @@ public abstract class AbstractMap extends MapActivity  {
 		GeoPoint trueCenter =map.getMapCenter();
 		int trueZoom = map.getZoomLevel();
 		if(!((trueCenter.equals(center)) && (trueZoom == zoomLevel))){	
-			Log.d(TAG, "You moved!:" + center.toString() + " zoom: " + zoomLevel);
+			//Log.d(TAG, "You moved!:" + center.toString() + " zoom: " + zoomLevel);
 			return true;
 		}else{
 			return false;
@@ -370,8 +370,8 @@ public abstract class AbstractMap extends MapActivity  {
 		String S = (String) new Timestamp(bottle.getTime()).toLocaleString();
 		recentOverlay.addToOverlay(new OverlayItem(point, S+emo, bottle.getMsg()));
 		
-		Log.d(TAG, Boolean.toString(map.isEnabled()));
-		Log.d(TAG, Integer.toString(recentOverlay.size()));
+		//Log.d(TAG, Boolean.toString(map.isEnabled()));
+		//Log.d(TAG, Integer.toString(recentOverlay.size()));
 		
 		map.getOverlays().add(recentOverlay);
 	}

@@ -20,7 +20,7 @@ public class GlobalMap extends AbstractMap implements OnClickListener {
 	private static final String TAG = "GlobalMap";
 	boolean check;
 	ZoomPanListener zpl;
-	int bottlesPerView = 10;
+	int bottlesPerView = 40;
 
 	/**
 	 * Initializes Activity
@@ -205,7 +205,7 @@ public class GlobalMap extends AbstractMap implements OnClickListener {
 		int maxLong = centerLong+width/2; //gets the right most longitude shown
 		int maxLat = centerLat+height/2; //gets the top most latitude shown
 		int minLat = centerLat-height/2; //gets the bottom most latitude shown
-		Log.d("Coordinates", "minLong: "+minLong+"minLat: "+minLat+"maxLong"+maxLong+"maxLat"+maxLat);
+		//Log.d("Coordinates", "minLong: "+minLong+"minLat: "+minLat+"maxLong"+maxLong+"maxLat"+maxLat);
 		return datahelper.getLocalBefore(minLat,maxLat,minLong,maxLong,bottlesPerView,epochTime);
 	}
 
