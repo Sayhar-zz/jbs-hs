@@ -1,5 +1,7 @@
 package org.jbs.happysad;
 
+//did we switch repositories?
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
