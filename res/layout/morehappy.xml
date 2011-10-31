@@ -20,9 +20,9 @@ android:background="@drawable/happymore">
 	android:id="@+id/textView1" 
 	android:layout_width="wrap_content" 
 	android:textSize="34.5sp" 
-android:gravity="center"
-        android:layout_height="wrap_content" 
-        android:layout_weight="1"  >
+	android:gravity="center"
+    android:layout_height="wrap_content" 
+    android:layout_weight="1"  >
         </TextView>
         	
     </TableLayout>
@@ -51,5 +51,16 @@ android:gravity="center"
 			
         	</FrameLayout>
     	</TableLayout>	
+    	
+    <TextView
+    android:text="@string/privacy_warning" 
+	android:id="@+id/privacy_warning" 
+	android:layout_width="wrap_content" 
+	android:textSize="34.5sp" 
+	android:gravity="center"
+    android:layout_height="wrap_content"
+    android:textColor="#6698FF" 
+    android:layout_weight="5"  />
+        
  </LinearLayout>  	 
 </ScrollView>

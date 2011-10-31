@@ -53,7 +53,7 @@ public class More extends Activity implements OnClickListener {
 		//Intent to figure out whether they clicked happy or sad from Prompt.java
 		extradata = getIntent().getExtras().getString("Clicked");
 		emotion = (short) getIntent().getExtras().getInt("Emotion");
-
+		
 		if(emotion == 1){
 			setContentView(R.layout.morehappy);
 		}
@@ -67,6 +67,8 @@ public class More extends Activity implements OnClickListener {
 		//Finds the submit_button view
 		View submitButton = findViewById(R.id.more_to_map);
 		submitButton.setOnClickListener(this);
+		View warning= findViewById(R.id.privacy_warning);
+		warning.setOnClickListener(this);
 		
 		 UIDh = new UIDhelper();
 		 myID =UIDh.getUID();
@@ -112,7 +114,14 @@ public class More extends Activity implements OnClickListener {
 				handler.postDelayed(runnable, 1000);
 			}
 			break;
+		case R.id.privacy_warning:
+			Intent ii = new Intent(this, Prefs.class);
+			ii.putExtra("latitude", GPS_latitude);
+			ii.putExtra("longitude", GPS_latitude);
+			startActivity(ii);
+			break;
 		}
+		
 	}
 	
 	/**

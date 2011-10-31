@@ -50,6 +50,16 @@ android:gravity="center"
 			android:layout_height="wrap_content" /> 
 			
         	</FrameLayout>
-    	</TableLayout>	
- </LinearLayout>  	 
+    	</TableLayout>
+    	 <TextView
+    android:text="@string/privacy_warning" 
+	android:id="@+id/privacy_warning" 
+	android:layout_width="wrap_content" 
+	android:textSize="34.5sp" 
+	android:gravity="center"
+    android:layout_height="wrap_content"
+    android:textColor="#efe618" 
+    android:layout_weight="5"  />	 	
+ </LinearLayout>  
+   
 </ScrollView>

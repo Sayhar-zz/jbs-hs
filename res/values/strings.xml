@@ -36,4 +36,5 @@
 	<string name="fuzz_title">Fuzz</string>
 	<string name="fuzz_summary">Don\'t mark my exact GPS location, but instead add a random \"fuzz factor\".</string>
 	
+	<string name="privacy_warning">WARNING: Incognito Mode</string>
 </resources>
