@@ -22,14 +22,15 @@ import org.json.JSONObject;
 import android.util.Base64;
 import android.util.Log;
 
+
 public class NetHelper {
 	private String TAG = "NETHELPER";
 	private long myID;
 	String username = "dhh";
 	String password = "secret";
 	private UIDhelper UIDh =  new UIDhelper();
-
-	
+	private static final String baseURL = "happytrack.heroku.com"; 
+	//private static final String baseURL = "192.168.1.106:3000";
 	public NetHelper(){
 		myID = UIDh.getUID();
 	}
@@ -49,7 +50,7 @@ public class NetHelper {
 		try {
 
 			HttpGet request = new HttpGet();
-			request.setURI(new URI("http://happytrack.heroku.com/finduser.json?email=" + name));
+			request.setURI(new URI("http://" + baseURL + "/finduser.json?email=" + name));
 			BasicHeader declareAuth = new BasicHeader("Authorization", "Basic " + Base64.encodeToString("dhh:secret".getBytes(), Base64.DEFAULT) + "==");
 			request.setHeader(declareAuth);
 			page = connectionHelper(request);
@@ -102,7 +103,7 @@ public class NetHelper {
 
 		URI url;
 		try { 
-			url = new URI("http", "happytrack.heroku.com", "/users.json", data, null); 
+			url = new URI("http", baseURL, "/users.json", data, null); 
 			//visit this url using POST (note, will not work with GET)
 			//http://happytrack.heroku.com/users.json?user[email]=sayhar@gmail.com
 			request.setURI(url);
@@ -139,9 +140,9 @@ public class NetHelper {
 		try {
 			//so we set up the get request as normal
 			HttpGet request = new HttpGet();
-			request.setURI(new URI("http://happytrack.heroku.com/bottles.json"));
+			request.setURI(new URI("http://" + baseURL+ "/bottles.json"));
 			if( t.equals(Task.GETMINE)){
-				request.setURI(new URI("http://happytrack.heroku.com/users/" + myID+"/bottles.json"));
+				request.setURI(new URI("http://" + baseURL + "/users/" + myID+"/bottles.json"));
 			}
 			Log.d(TAG, "calling: " + request.getURI().toString());
 			//then let connectionHelper do the heavy lifting for us
@@ -171,9 +172,10 @@ public class NetHelper {
 
 		URI url;
 		try { 
-			url = new URI("http", "happytrack.heroku.com", "/bottles", data, null);
+			url = new URI("http", baseURL, "/bottles", data, null);
 			//here we add the data to the url (POST) and then of course send it to connectionhelper to do all the heavy lifting 
 			request.setURI(url);
+			
 			Log.d(TAG, "data: "+ data);
 			Log.d(TAG, "uRL: " + url);
 		} catch (URISyntaxException e1) {
@@ -196,7 +198,7 @@ public class NetHelper {
 		HttpClient client = new DefaultHttpClient();
 		try{
 			//this is how we get past security
-			BasicHeader declareAuth = new BasicHeader("Authorization", "Basic " + Base64.encodeToString((username+":"+password).getBytes(), Base64.DEFAULT) + "==");
+			BasicHeader declareAuth = new BasicHeader("Authorization", "Basic " + Base64.encodeToString((username+":"+password).getBytes(), Base64.NO_WRAP) + "==");
 			request.setHeader(declareAuth);
 			//this is where we send the actual request
 			HttpResponse response = client.execute(request);
@@ -228,7 +230,9 @@ public class NetHelper {
 	//ok so now we turn json info useful info
 	private ArrayList<HappyBottle> parse(String in){
 		ArrayList<HappyBottle> a = new ArrayList<HappyBottle>();
+		Log.i(TAG, "\nstring is in:\n" + in);
 		try {
+			
 			JSONArray jarray = new JSONArray(in);
 			//ok so rails is annoying in how it sends us json info. It wraps everything into an array
 			//then it contains json objects within json objects. ANNOYING AS HELL
@@ -324,12 +328,12 @@ public class NetHelper {
 		try{
 			HttpGet request = new HttpGet();
 			if (timebefore < 0){
-				request.setURI(new URI("http://happytrack.heroku.com/bottles/local/" +minLat +"/" + maxLat + "/" + minLong + "/" + maxLong + "/" + limit + "/" + timebefore+ ".json"));
+				request.setURI(new URI("http://" + baseURL + "/bottles/local/" +minLat +"/" + maxLat + "/" + minLong + "/" + maxLong + "/" + limit + "/" + timebefore+ ".json"));
 			} else{
-			request.setURI(new URI("http://happytrack.heroku.com/bottles/local/" +minLat +"/" + maxLat + "/" + minLong + "/" + maxLong + "/" + limit +"/" + timebefore+".json"));
+			request.setURI(new URI("http://" + baseURL + "/bottles/local/" +minLat +"/" + maxLat + "/" + minLong + "/" + maxLong + "/" + limit +"/" + timebefore+".json"));
 			}
 			Log.d(TAG, request.getURI().toString());
-			BasicHeader declareAuth = new BasicHeader("Authorization", "Basic " + Base64.encodeToString("dhh:secret".getBytes(), Base64.DEFAULT) + "==");
+			BasicHeader declareAuth = new BasicHeader("Authorization", "Basic " + Base64.encodeToString("dhh:secret".getBytes(), Base64.NO_WRAP) + "==");
 			request.setHeader(declareAuth);
 			//then let connectionHelper do the heavy lifting for us
 			page = connectionHelper(request); 
