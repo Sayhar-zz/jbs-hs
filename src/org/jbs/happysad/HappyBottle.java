@@ -7,6 +7,7 @@ import static org.jbs.happysad.Constants.LONG;
 import static org.jbs.happysad.Constants.MSG;
 import static org.jbs.happysad.Constants.TIME;
 import static org.jbs.happysad.Constants.UID;
+import static org.jbs.happysad.Constants.PRIVACY;
 /**
  * Happy Bottle is the object used to express 1 row in the database, or 1 update.
  * @author HappyTrack
@@ -20,7 +21,7 @@ public class HappyBottle {
 	private String msg;
 	private long time;
 	private long uid;
-	
+	private boolean privacy;
 	
 	/**
 	 * Constructs a HappyBottle object to retrieve and save updates
@@ -30,6 +31,7 @@ public class HappyBottle {
 	 * @param emo emotion value of type short
 	 * @param msg message of type string
 	 * @param time time stamp of type long
+	 * 
 	 */
 	public HappyBottle(long uid, int lati, int longi, short emo, String msg, long time) {
 		this.lati = lati;
@@ -38,7 +40,10 @@ public class HappyBottle {
 		this.msg = msg;
 		this.time = time;
 		this.uid = uid;
+		this.privacy = false;
 	}	
+	
+	
 	
 	/**
 	 * Puts all the values into a ContentValues object
@@ -52,6 +57,9 @@ public class HappyBottle {
 		values.put(MSG, msg);
 		values.put(EMO, emo);
 		values.put(UID, uid);
+		short priv = (short) (privacy?1:0);
+		//privacy is expressed as a short because of SQL being weird
+		values.put(PRIVACY, priv);
 		return values;
 	}
 	/**
@@ -95,5 +103,13 @@ public class HappyBottle {
 	 */
 	public long getUID(){
 		return uid;
+	}
+	
+	public boolean getPrivacy(){
+		return privacy;
+	}
+	
+	public void setPrivacy(boolean b){
+		this.privacy = b;
 	}
 }

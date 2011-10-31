@@ -17,4 +17,5 @@ public interface Constants extends BaseColumns {
    public static final String TIME = "time";
    public static final String UID = "user_id"; 
    public static final String SYNC = "sync";
+   public static final String PRIVACY = "privacy";
 }

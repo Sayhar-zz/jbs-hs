@@ -242,6 +242,10 @@ public class More extends Activity implements OnClickListener {
 		}
 		fuzzify();
 		HappyBottle b = new HappyBottle(myID, GPS_latitude, GPS_longitude, emotion, msg, System.currentTimeMillis());
+		//if we are in incognito mode
+		if(Prefs.getIncognito(this)){
+			b.setPrivacy(true);
+		}
 		dataHelper = new HappyData(this);
 		dataHelper.addBottle(b);
 		return b;

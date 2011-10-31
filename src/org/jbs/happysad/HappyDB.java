@@ -13,7 +13,7 @@ import static org.jbs.happysad.Constants.LONG;
 import static org.jbs.happysad.Constants.EMO;
 import static org.jbs.happysad.Constants.MSG;
 import static org.jbs.happysad.Constants.UID;
-
+import static org.jbs.happysad.Constants.PRIVACY;
 
 /**
  * Creates the Database
@@ -23,7 +23,7 @@ import static org.jbs.happysad.Constants.UID;
 public class HappyDB extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "happy.db";
 
-	private static final int DATABASE_VERSION = 4; //5
+	private static final int DATABASE_VERSION = 10; //5
 
 	private static final String TAG = "HappyDB"; 
 	
@@ -45,8 +45,19 @@ public class HappyDB extends SQLiteOpenHelper {
 			LONG + " INTEGER, " + 
 			EMO + " REAL, " + 
 			MSG + " TEXT, " + 
-			TIME + " INTEGER," + 
-			SYNC + " INTEGER);");
+			TIME + " INTEGER, " + 
+			SYNC + " INTEGER, " +
+			PRIVACY + " INTEGER);");
+	Log.i(TAG, "CREATE TABLE "+ TABLE_NAME + 
+			" (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + 
+			UID + " INTEGER, " + 
+			LAT + " INTEGER, " +
+			LONG + " INTEGER, " + 
+			EMO + " REAL, " + 
+			MSG + " TEXT, " + 
+			TIME + " INTEGER, " + 
+			SYNC + " INTEGER, " +
+			PRIVACY + " INTEGER);");
 	}
 
 	/**
@@ -56,7 +67,7 @@ public class HappyDB extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.v(TAG, "upgrading");
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-	     onCreate(db);
+	    onCreate(db);
 	}	
 	
 	

@@ -29,8 +29,8 @@ public class NetHelper {
 	String username = "dhh";
 	String password = "secret";
 	private UIDhelper UIDh =  new UIDhelper();
-	private static final String baseURL = "happytrack.heroku.com"; 
-	//private static final String baseURL = "192.168.1.106:3000";
+	//private static final String baseURL = "happytrack.heroku.com"; 
+	private static final String baseURL = "192.168.1.106:3000";
 	public NetHelper(){
 		myID = UIDh.getUID();
 	}
@@ -164,10 +164,10 @@ public class NetHelper {
 	protected boolean upload(HappyBottle b) {
 		//so we set up the request
 		HttpPost request = new HttpPost();
-		Object[] values = {b.getEmo(), b.getLat(), b.getLong(), b.getMsg(), b.getUID(), b.getTime()};  
+		Object[] values = {b.getEmo(), b.getLat(), b.getLong(), b.getMsg(), b.getUID(), b.getTime(), b.getPrivacy()};  
 		Formatter f = new Formatter();
 		//we input all the information here
-		f.format("bottle[emo]=%s&bottle[lat]=%s&bottle[long]=%s&bottle[msg]=%s&bottle[user_id]=%s&bottle[time]=%s&commit=Create Bottle", values);
+		f.format("bottle[emo]=%s&bottle[lat]=%s&bottle[long]=%s&bottle[msg]=%s&bottle[user_id]=%s&bottle[time]=%s&bottle[privacy]=%s&commit=Create Bottle", values);
 		String data = f.toString();
 
 		URI url;

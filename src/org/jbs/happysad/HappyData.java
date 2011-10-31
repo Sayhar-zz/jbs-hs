@@ -197,8 +197,16 @@ public class HappyData {
 		short emo = cursor.getShort(4);
 		String msg = cursor.getString(5);
 		long time = cursor.getLong(6);
-
+		short priv;
+		try{
+			priv = cursor.getShort(8);
+		}
+		catch(Exception e){
+			priv = 0;
+		}
+		boolean privacy = priv>0?true:false;
 		HappyBottle b = new HappyBottle(uid, latitude, longitude, emo, msg, time);
+		b.setPrivacy(privacy);
 		return b;
 	}
 
