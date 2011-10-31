@@ -29,4 +29,11 @@
 	<string name="sad_overlay">Switch Happy</string>
 	<string name="switch_view">Switch Map View</string>
 	
+	<string name="settings">Settings</string>
+	
+	<string name="privacy_title">Incognito Mode</string>
+	<string name="privacy_summary">Make my updates private</string>
+	<string name="fuzz_title">Fuzz</string>
+	<string name="fuzz_summary">Don\'t mark my exact GPS location, but instead add a random \"fuzz factor\".</string>
+	
 </resources>

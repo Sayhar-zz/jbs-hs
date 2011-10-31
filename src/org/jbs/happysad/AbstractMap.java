@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Contacts.Settings;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
@@ -89,9 +90,6 @@ public abstract class AbstractMap extends MapActivity  {
 	protected void invalidateOverlay() {
 		map.getOverlays().add(userLocationOverlay);
 	}
-
-
-
 
 
 
@@ -306,6 +304,7 @@ public abstract class AbstractMap extends MapActivity  {
 	    case R.id.new_update:
 	    	startActivity(new Intent(this, Prompt.class));
 	    	//checks what current view is, then switches it off and starts the alternate view
+	    	return true;
 		case R.id.map_switch:
 			if (streetView==0) {
 				map.setStreetView(true);
@@ -317,6 +316,15 @@ public abstract class AbstractMap extends MapActivity  {
 				map.setSatellite(true);
 			}
 			map.invalidate();	
+			return true;
+		case R.id.settings:
+			Intent i = new Intent(this, Prefs.class);
+			
+			i.putExtra("latitude", userLocationOverlay.getMyLocation().getLatitudeE6());
+			i.putExtra("longitude", userLocationOverlay.getMyLocation().getLongitudeE6());
+			startActivity(i);
+			return true;
+			
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MyMap extends AbstractMap implements OnClickListener {
 	ZoomPanListener zpl;
 	Runnable running;
-	int bottlestoview = 35;
+	int bottlestoview = 35; //35
 
 	/**
 	 * Initializes Activity

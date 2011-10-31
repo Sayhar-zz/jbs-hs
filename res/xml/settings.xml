@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+  	<CheckBoxPreference 
+  		android:key="privacy"
+  		android:title="@string/privacy_title"
+  		android:summary="@string/privacy_summary"
+  		android:defaultValue="false"	/>
+  	<CheckBoxPreference 
+  		android:key="fuzz"
+  		android:title="@string/fuzz_title"
+  		android:summary="@string/fuzz_summary"
+  		android:defaultValue="false"
+  	/>
+</PreferenceScreen>

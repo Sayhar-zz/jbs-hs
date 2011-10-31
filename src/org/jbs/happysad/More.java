@@ -1,5 +1,7 @@
 package org.jbs.happysad;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -18,6 +21,11 @@ import android.widget.Toast;
  * @author HappyTrack
  */
 public class More extends Activity implements OnClickListener {
+	private static final String TAG = "more";
+	private static final int FUZZFACTOR = 30; //the higher the factor, the more fuzz is applied to the GPS. 
+	//Eventually this should be a slider-option in the preference screen.
+	
+	
 	//fields
 	private LocationManager gpsLocationManager;
 	private LocationManager networkLocationManager;
@@ -41,7 +49,7 @@ public class More extends Activity implements OnClickListener {
 	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		Log.v(TAG, "hello!");
 		//Intent to figure out whether they clicked happy or sad from Prompt.java
 		extradata = getIntent().getExtras().getString("Clicked");
 		emotion = (short) getIntent().getExtras().getInt("Emotion");
@@ -220,12 +228,32 @@ public class More extends Activity implements OnClickListener {
 				//TODD ADD STUFF HERE
 			}
 		}
+		fuzzify();
 		HappyBottle b = new HappyBottle(myID, GPS_latitude, GPS_longitude, emotion, msg, System.currentTimeMillis());
 		dataHelper = new HappyData(this);
 		dataHelper.addBottle(b);
 		return b;
 	}
 
+	//If the Fuzz option in sharedpreferences is set, then fuzz the GPS location a bit.
+	protected void fuzzify(){
+		if (Prefs.getFuzz(this)){
+			Log.v(TAG, "Fuzz is true!");
+			Log.v(TAG, "Old lat:" + GPS_latitude);
+			Log.v(TAG, "Old long:" + GPS_longitude);
+			
+			Random generator = new Random();
+			int plusminus = generator.nextBoolean()?-1:1;
+			GPS_longitude += plusminus * generator.nextInt(FUZZFACTOR);
+			plusminus = generator.nextBoolean()?-1:1;
+			GPS_latitude += plusminus * generator.nextInt(FUZZFACTOR);
+			
+			
+			Log.v(TAG, "New lat:" + GPS_latitude);
+			Log.v(TAG, "New long:" + GPS_longitude);
+		}
+	}
+	
 	//Disables GPS Managers and Listeners
 	protected void onPause() {
 		super.onPause();
