@@ -44,6 +44,8 @@ public class More extends Activity implements OnClickListener {
 	private Thread t;
 	Handler handler = new Handler();
 	Runnable running;
+	private TextView warning;
+	
 	/**
 	 * Initializes activity
 	 */
@@ -67,8 +69,9 @@ public class More extends Activity implements OnClickListener {
 		//Finds the submit_button view
 		View submitButton = findViewById(R.id.more_to_map);
 		submitButton.setOnClickListener(this);
-		View warning= findViewById(R.id.privacy_warning);
+		warning=  (TextView) findViewById(R.id.privacy_warning);
 		warning.setOnClickListener(this);
+		
 		
 		 UIDh = new UIDhelper();
 		 myID =UIDh.getUID();
@@ -262,6 +265,20 @@ public class More extends Activity implements OnClickListener {
 			Log.v(TAG, "New long:" + GPS_longitude);
 		}
 	}
+
+	//only show the warning if you actually are in incognito mode	
+	protected void fixWarning(){
+		
+		//if we are not in incognito mode, don't show this warning. That is all.
+		if(!Prefs.getIncognito(this)){
+			warning.setVisibility(View.INVISIBLE);
+			
+		}
+		else{
+			warning.setVisibility(View.VISIBLE);
+		}
+		
+	}
 	
 	//Disables GPS Managers and Listeners
 	protected void onPause() {
@@ -272,6 +289,10 @@ public class More extends Activity implements OnClickListener {
 	//Enables GPS Managers and Listeners
 	protected void onResume() {
 		super.onResume();
+		//only show the warning if you actually are in incognito mode
+		//We need to recheck onResume because the settings could've changed, then they hit the back button
+		fixWarning();
+		
 		locationStuff();
 	}
 	
