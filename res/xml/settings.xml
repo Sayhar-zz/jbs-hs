@@ -10,6 +10,6 @@
   		android:key="fuzz"
   		android:title="@string/fuzz_title"
   		android:summary="@string/fuzz_summary"
-  		android:defaultValue="false"
+  		android:defaultValue="true"
   	/>
 </PreferenceScreen>

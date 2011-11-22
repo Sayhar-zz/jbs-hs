@@ -199,10 +199,14 @@ public class HappyData {
 		long time = cursor.getLong(6);
 		short priv;
 		try{
+			Log.d(TAG, "cursor = " + cursor.getString(8));
+			
 			priv = cursor.getShort(8);
 		}
 		catch(Exception e){
 			priv = 0;
+			Log.e(TAG, "Error in createBottle");
+			//sometimes the error happens when you download from the internet. No idea why.
 		}
 		boolean privacy = priv>0?true:false;
 		HappyBottle b = new HappyBottle(uid, latitude, longitude, emo, msg, time);

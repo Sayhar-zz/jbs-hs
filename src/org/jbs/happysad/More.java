@@ -22,7 +22,7 @@ import android.widget.Toast;
  */
 public class More extends Activity implements OnClickListener {
 	private static final String TAG = "more";
-	private static final int FUZZFACTOR = 30; //the higher the factor, the more fuzz is applied to the GPS. 
+	private static final int FUZZFACTOR = 300; //the higher the factor, the more fuzz is applied to the GPS. 
 	//Eventually this should be a slider-option in the preference screen.
 	
 	

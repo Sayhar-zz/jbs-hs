@@ -29,8 +29,8 @@ public class NetHelper {
 	String username = "dhh";
 	String password = "secret";
 	private UIDhelper UIDh =  new UIDhelper();
-	//private static final String baseURL = "happytrack.heroku.com"; 
-	private static final String baseURL = "192.168.1.106:3000";
+	private static final String baseURL = "happytrack.heroku.com"; 
+	//private static final String baseURL = "192.168.1.106:3000";
 	public NetHelper(){
 		myID = UIDh.getUID();
 	}

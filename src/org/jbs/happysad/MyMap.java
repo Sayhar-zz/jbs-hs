@@ -160,7 +160,7 @@ public class MyMap extends AbstractMap implements OnClickListener {
 				Runnable runnable = new Runnable(){
 					@Override
 					public void run(){
-						Toast.makeText(getApplicationContext(), "Sorry, There is Nothing More to Show", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "Sorry, there is nothing more to show this far into the past", Toast.LENGTH_SHORT).show();
 					}
 				};
 				running = runnable;
@@ -189,7 +189,7 @@ public class MyMap extends AbstractMap implements OnClickListener {
 				Runnable runnable = new Runnable(){
 					@Override
 					public void run(){
-						Toast.makeText(getApplicationContext(), "Sorry, There is Nothing More to Show", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "Sorry, you're trying to go too far into the future", Toast.LENGTH_SHORT).show();
 					}
 				};
 				running = runnable;

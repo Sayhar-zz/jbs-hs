@@ -48,16 +48,6 @@ public class HappyDB extends SQLiteOpenHelper {
 			TIME + " INTEGER, " + 
 			SYNC + " INTEGER, " +
 			PRIVACY + " INTEGER);");
-	Log.i(TAG, "CREATE TABLE "+ TABLE_NAME + 
-			" (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + 
-			UID + " INTEGER, " + 
-			LAT + " INTEGER, " +
-			LONG + " INTEGER, " + 
-			EMO + " REAL, " + 
-			MSG + " TEXT, " + 
-			TIME + " INTEGER, " + 
-			SYNC + " INTEGER, " +
-			PRIVACY + " INTEGER);");
 	}
 
 	/**
