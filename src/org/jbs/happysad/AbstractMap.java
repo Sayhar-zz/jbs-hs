@@ -319,9 +319,13 @@ public abstract class AbstractMap extends MapActivity  {
 			return true;
 		case R.id.settings:
 			Intent i = new Intent(this, Prefs.class);
-			
-			i.putExtra("latitude", userLocationOverlay.getMyLocation().getLatitudeE6());
-			i.putExtra("longitude", userLocationOverlay.getMyLocation().getLongitudeE6());
+			try{
+				i.putExtra("latitude", userLocationOverlay.getMyLocation().getLatitudeE6());
+				i.putExtra("longitude", userLocationOverlay.getMyLocation().getLongitudeE6());
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 			startActivity(i);
 			return true;
 			

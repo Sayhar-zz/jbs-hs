@@ -251,16 +251,26 @@ public class HappyData {
 	}
 	
 	protected ArrayList<HappyBottle> getMyLocalBefore(int minLat, int maxLat, int minLong, int maxLong, int limit, long timebefore){
-		SQLiteDatabase db = h.getReadableDatabase();
 		String[] args = {Integer.toString(minLat), Integer.toString(maxLat), Integer.toString(minLong), Integer.toString(maxLong), Long.toString(timebefore), Long.toString(myID)};
-		Cursor cursor = db.query(TABLE_NAME, null, "lat > ? and lat < ? and long > ? and long < ? and time < ? and " + UID +"= ?" , args, null, null, TIME + " DESC", Integer.toString(limit));
+		SQLiteDatabase db = h.getReadableDatabase();
 		ArrayList<HappyBottle> a = new ArrayList<HappyBottle>();
-		while (cursor.moveToNext() ){
-			HappyBottle b = createBottle(cursor);
-			a.add(b);
+		
+		try{
+			Cursor cursor = db.query(TABLE_NAME, null, "lat > ? and lat < ? and long > ? and long < ? and time < ? and " + UID +"= ?" , args, null, null, TIME + " DESC", Integer.toString(limit));
+			
+			while (cursor.moveToNext() ){
+				HappyBottle b = createBottle(cursor);
+				a.add(b);
+			}
+			cursor.close();
+			db.close();
 		}
-		cursor.close();
-		db.close();
+		catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
+		
 		return a;
 	}
 	
